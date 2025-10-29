@@ -1,19 +1,29 @@
-console.log("Hello World!");
-setupCounter();
+const btn = document.querySelector('.contact-button');
+if (btn) {
+  const link = btn.closest('a');
+  let navigating = false;
+  const ANIM_MS = 300;
+  const NAV_DELAY = ANIM_MS + 300;
 
-function setupCounter() {
-  let count = 0;
+  const triggerTiltAndMaybeNavigate = () => {
+    if (navigating) return;
+    navigating = true;
+    btn.classList.add('tilt');
+    setTimeout(() => btn.classList.remove('tilt'), ANIM_MS);
 
-  function increment() {
-    count++;
-    document.querySelector("#count").innerHTML = count;
-  }
+    if (link && link.href) {
+      setTimeout(() => {
+        window.location.assign(link.href);
+      }, NAV_DELAY);
+    } else {
+      setTimeout(() => {
+        navigating = false;
+      }, NAV_DELAY);
+    }
+  };
 
-  function decrement() {
-    count--;
-    document.querySelector("#count").innerHTML = count;
-  }
-
-  document.querySelector("#increment").addEventListener("click", increment);
-  document.querySelector("#decrement").addEventListener("click", decrement);
+  btn.addEventListener('click', (e) => {
+    if (link) e.preventDefault();
+    triggerTiltAndMaybeNavigate();
+  });
 }

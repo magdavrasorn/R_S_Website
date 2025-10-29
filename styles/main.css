@@ -1,37 +1,57 @@
 @import url("reset.css");
-/* This is a custom font from google fonts */
-@import url("https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300..900&display=swap");
+
+/* These fonts are the one I selected for my website */
+@import url('https://fonts.googleapis.com/css2?family=Honk&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Doto:wght@100..900&family=Monofett&display=swap');
+
 
 /* what is :root? https://developer.mozilla.org/en-US/docs/Web/CSS/:root */
 :root {
   /* Define design variables */
-  --color-primary: #2b2d42;
-  --color-secondary: #bfc6d2;
-  --color-background: #f5f5f5;
-  --color-accent: #535bf2;
+  --color-primary: #ffffff;
+  --color-secondary: #ffffff;
+  --color-background: #f89c9c;
+  --color-accent: rgb(255, 0, 55);
 
   --border-radius: 0.5rem;
 
-  --font-titles: "Frank Ruhl Libre", serif;
-  --font-body: system-ui, sans-serif; /* system-ui matches the user's system font */
+  --font-titles: "Honk", serif;
+  --font-body: "DM Mono", sans-serif; /* system-ui matches the user's system font */
+
 }
 
 body {
   color: var(--color-primary);
   background-color: var(--color-background);
   font-family: var(--font-body);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* Layout */
-main {
-  padding: 2rem;
-}
-
 header {
-  padding: 1rem;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 1rem 2rem;
+  gap: 1rem;
 }
 
-main,
+nav {
+  display: flex;
+  gap: 1rem;
+  align-self: center;
+}
+
+main {
+  flex: 1;
+  padding: 0rem;
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
 header,
 nav {
   max-width: 60rem;
@@ -43,22 +63,9 @@ nav {
   padding: 1rem 0;
 }
 
-.rtl {
-  direction: rtl;
-}
-
 /* Text */
 p {
   margin: 1rem 0;
-}
-
-ul,
-ol {
-  margin-top: 0.5rem;
-}
-
-li {
-  margin-top: 0.3rem;
 }
 
 h1,
@@ -67,7 +74,7 @@ h3,
 h4,
 h5,
 h6 {
-  margin-top: 1rem;
+  margin-top: 0rem;
   font-family: var(--font-titles);
   font-weight: 500;
   font-optical-sizing: auto;
@@ -97,11 +104,6 @@ h6 {
   font-size: 0.83em;
 }
 
-blockquote {
-  padding-left: 1rem;
-  border-left: 2px solid var(--color-secondary);
-}
-
 /* Links */
 a {
   color: var(--color-accent);
@@ -109,18 +111,6 @@ a {
 }
 a:hover {
   text-decoration: none;
-}
-
-/* Tables */
-table {
-  margin-top: 1.5rem;
-  border-spacing: 0px;
-  border-collapse: collapse;
-}
-table td,
-table th {
-  padding: 0.5rem;
-  border: 1px solid var(--color-secondary);
 }
 
 /* Forms */
@@ -138,21 +128,171 @@ fieldset {
   border: 1px solid var(--color-secondary);
 }
 
-.counter-button {
+.submit-button {
   background-color: var(--color-accent);
-  width: 2rem;
-  height: 2rem;
   color: white;
+  padding: 0.5rem 1rem;
   border: none;
-  border-radius: 1000px; /* Make the button round */
+  border-radius: var(--border-radius);
   cursor: pointer;
-  font-weight: bold;
+  transition: filter 0.2s ease-in-out;
+}
 
-  &:hover {
-    filter: brightness(120%);
+.submit-button:hover {
+  filter: brightness(120%);
+}
+
+/* Presentation Section Styles */
+.presentation-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin: 2rem auto;
+  max-width: 100%;
+  text-align: center;
+}
+
+.presentation-content {
+  padding: 1rem;
+  max-width: 100%;    
+
+}
+
+.presentation-grid {
+  display: flex;
+  justify-content: center; /* center image(s) horizontally */
+  align-items: center;
+  padding: 1rem 0;         /* spacing between text and image */
+  width: 100%;
+}
+
+.presentation-card,
+.characteristics-card {
+  width: auto;
+  max-width: 25rem;     
+  height: auto;         
+  border-radius: var(--border-radius);
+  transition: transform 0.3s ease;
+  display: block; 
+  margin: 0 auto;       
+
+}
+
+.presentation-card:hover,
+.characteristics-card:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+/* Characteristics Section Styles */
+.characteristics-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin: 2rem auto;
+  text-align: center;
+  max-width: 100%;    
+
+}
+
+.characteristics-content {
+  padding: 1rem;
+  max-width: 100%;    
+
+}
+
+.contact-content {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+/* Contact Button Styles */
+.contact-button {
+  background-color: var(--color-accent);
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 1.1em;
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+}
+
+.contact-button:hover {
+  transform: scale(1.05);
+  filter: brightness(120%);
+}
+
+.contact-button.tilt {
+  transform: rotate(-180deg) scale(1.5);
+  background-color: rgba(230, 121, 67, 0.95);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+}
+
+
+/* Footer Styles */
+footer {
+  text-align: center;
+  padding: 2rem;
+  margin-top: auto;
+  border-top: 1px solid var(--color-secondary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .characteristics-section,
+  .presentation-section {
+    max-width: 100%;
   }
 
-  &:active {
-    filter: brightness(80%);
+  .presentation-card,
+  .characteristics-card {
+    width: 100%;        
+    max-width: 25rem;  
+    height: auto;
   }
+  
+  header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  nav {
+    justify-content: center;
+  }
+}
+
+/* Contact Form Additional Styles */
+.contact-section fieldset {
+  padding: 1.5rem;
+}
+
+.contact-section legend {
+  padding: 0 1rem;
+  font-size: 1.2em;
+  color: var(--color-accent);
+}
+
+.contact-section label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+}
+
+.contact-section input,
+.contact-section textarea {
+  width: 100%;
+  background-color: var(--color-background);
+  color: var(--color-primary);
+  border: 1px solid var(--color-secondary);
+  margin-bottom: 1rem;
+}
+
+.contact-section input:focus,
+.contact-section textarea:focus {
+  outline: 2px solid var(--color-accent);
+  border-color: transparent;
 }
